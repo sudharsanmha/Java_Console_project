@@ -2,23 +2,24 @@ import java.util.Scanner;
 
 public class OrderFood {
 	public static void main(String[] args) {
-		header();
+		Menu obj1 = new Menu();
+		obj1.logIn();
+		//header();
 	}
 
 	public static void header() {
 		Scanner obj = new Scanner(System.in);
 		Menu obj1 = new Menu();
+		//obj1.logIn();
 		System.out.println("================================================");
 		System.out.println("\tWelcome to Online Food Delivery\t".toUpperCase());
 		System.out.println("================================================");
-		System.out.println("================================================");
-//		System.out.println("");
+		System.out.println("");
 		System.out.print("1.Profile Details");
 		System.out.println("\t\t2.Food Items");
 		System.out.println("");
-		System.out.print("3.FeedBack");
-		System.out.println("\t\t\t\t4.LogOut");
-//		System.out.println("");
+		System.out.println("\t\t3.FeedBack");
+		//System.out.println("");
 		System.out.println("================================================");
 		System.out.println("");
 		System.out.print("Enter Your Choice: ");
@@ -28,7 +29,7 @@ public class OrderFood {
 		switch (userdata) {
 
 		case 1:
-			obj1.logIn();
+			obj1.profileDetail();
 			break;
 
 		case 2:
@@ -37,10 +38,6 @@ public class OrderFood {
 
 		case 3:
 			obj1.feedBack();
-			break;
-
-		case 4:
-			obj1.logOut();
 			break;
 
 		default:
@@ -66,7 +63,7 @@ public class OrderFood {
 	
 	public void logIn() {
 		System.out.println("================================================");
-		System.out.println("\tEnter Your Profile Details\t\t");
+		System.out.println("\tEnter Your Login Details\t\t");
 		System.out.println("================================================");
 		Scanner obj = new Scanner(System.in);
 		System.out.println("");
@@ -76,39 +73,59 @@ public class OrderFood {
 		System.out.print("Password: ");
 		String password = obj.next();
 		System.out.println("");
-		System.out.print("Address(with pincode): ");
-		obj.nextLine();
-		String address = obj.nextLine();
-		System.out.println("");
 		userNameData = username;
 		userPasswordData = password;
-		userAddressData = address;
-		System.out.println("-->Check Your Details are Correct<--");
-		System.out.println("");
-		System.out.println("------------------------------------");
-		System.out.println("\tYour UserName: " + userNameData);
-		System.out.println("\tYour Password: " + "*********");
-		System.out.println("\tYour Address: " + userAddressData);
 		System.out.println("------------------------------------");
 		System.out.println("");
+		try{
+		System.out.println("Confirm the Username & password: : ");
+		// System.out.println("");
 		System.out.print("1.Yes");
 		System.out.println("\t\t2.No");
 		System.out.println("");
-		System.out.print("Confirm it: ");
+		System.out.print("Confirm Your Choice: ");
 		int verify = obj.nextInt();
 		System.out.println("");
+		
 		if (verify == 1) {
 			System.out.println("***Logged In Successfully***");
 			System.out.println("");
-			obj2.header();
-		} else {
-			System.out.println("-->ReEnter Your Login ID<--");
+			header();
+		} 
+		else if(verify == 2) {
+			logIn();
+		}
+		else{
+			System.out.println("INVAILD LOGIN ID!!!"+"\n-->ReEnter Your Login ID<--");
 			System.out.println("");
 			logIn();
 		}
+	}catch(Exception e){
+		System.out.println("");
+		System.out.print("Enter vaild Input--->ReType the Login ID");
+		System.out.println("");
+		logIn();
+	}
 		obj.close();
 	}
-
+	public void profileDetail(){
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.print("Enter Your Name: ");
+		String name = obj.nextLine();
+		if(name.equals("1") || name.equals("2") || name.equals("3") || name.equals("4") || 
+		name.equals("5") || name.equals("6") || name.equals("7") || name.equals("8") || 
+		name.equals("9") || name.equals("0")){
+			System.out.println("INVAILD INPUT");
+			profileDetail();
+		}
+		System.out.println("");
+		System.out.println("Enter Your Address(with PINCODE): ");
+		String address = obj.nextLine();
+		System.out.println("");
+		System.out.println("================================================");
+		obj.close();
+	} 
 	public void foodItems() {
 		Scanner obj = new Scanner(System.in);
 		System.out.println("================================================");
@@ -146,11 +163,32 @@ public class OrderFood {
 	}
 
 	public void logOut() {
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("Do You Done With Your Order!!!");
 		System.out.println("");
-		System.out.println("\t" + "Visit Again Dear Customer" + "\t");
+		System.out.println("Confirm it: ");
+		System.out.println("");
+		System.out.println("1.Yes" +"\t\t2.No");
+		System.out.println("");
+		int confirm = obj.nextInt();
+		if(confirm == 1){
+			System.out.println("\t" + "Visit Again Dear Customer" + "\t");
+		} 
+		else if(confirm == 2){
+			System.out.println("Choose Your Order---> ");
+			foodItems();
+		}
+		else{
+			System.out.println("Invaild Option!!!");
+			System.out.println("<---Please Choose the Correct Option--->");
+			logOut();
+		}
+		
+		System.out.println("================================================");
 	}
 	
-	public static void feedBack() {
+	public void feedBack() {
 		Scanner obj = new Scanner(System.in);
 		System.out.println("================================================");
 		System.out.println("\t" + "***" + "Username: " + userNameData + "***");
@@ -162,6 +200,7 @@ public class OrderFood {
 		String feed = obj.nextLine();
 		System.out.println("");
 		System.out.println("***Your Feedback Has Been Accepted***");
+		header();
 		obj.close();
 	}
 }
@@ -808,6 +847,7 @@ public class OrderFood {
  class FoodOrderVeg   {
 	OrderFood obj1 = new OrderFood();
 	FoodVarities obj2 = new FoodVarities();
+	Menu obj3 = new Menu(); 
 	void Order() {
 		Scanner obj = new Scanner(System.in);
 
@@ -815,7 +855,7 @@ public class OrderFood {
 		if (confirm == 1) {
 			System.out.println("");
 			System.out.println("Your Order has been Placed!!!");
-			obj1.header();
+			obj3.logOut();
 		} else if (confirm == 2) {
 			System.out.println("");
 			obj1.header();
