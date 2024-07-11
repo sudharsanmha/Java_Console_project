@@ -1,0 +1,1050 @@
+import java.util.Scanner;
+
+public class OrderFood {
+	public static void main(String[] args) {
+		header();
+	}
+
+	public static void header() {
+		Scanner obj = new Scanner(System.in);
+		Menu obj1 = new Menu();
+		System.out.println("================================================");
+		System.out.println("\tWelcome to Online Food Delivery\t".toUpperCase());
+		System.out.println("================================================");
+		System.out.println("================================================");
+//		System.out.println("");
+		System.out.print("1.Profile Details");
+		System.out.println("\t\t2.Food Items");
+		System.out.println("");
+		System.out.print("3.FeedBack");
+		System.out.println("\t\t\t\t4.LogOut");
+//		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Choice: ");
+		try {
+		int userdata = obj.nextInt();
+
+		switch (userdata) {
+
+		case 1:
+			obj1.logIn();
+			break;
+
+		case 2:
+			obj1.foodItems();
+			break;
+
+		case 3:
+			obj1.feedBack();
+			break;
+
+		case 4:
+			obj1.logOut();
+			break;
+
+		default:
+			System.out.println("\t-->Invaild choice<--" + "\n\t-->Refresh this Page<--");
+		}
+		}catch(Exception e) {
+			System.out.println("\t***Enter Integer value***");
+			header();
+		}
+		
+		obj.close();
+	}
+}
+
+//Menu
+
+ class Menu extends OrderFood{
+	FoodType obj1 = new FoodType();
+	OrderFood obj2 = new OrderFood();
+	static String userNameData;
+	static String userPasswordData;
+	static String userAddressData;
+	
+	public void logIn() {
+		System.out.println("================================================");
+		System.out.println("\tEnter Your Profile Details\t\t");
+		System.out.println("================================================");
+		Scanner obj = new Scanner(System.in);
+		System.out.println("");
+		System.out.print("UserName: ");
+		String username = obj.next();
+		System.out.println("");
+		System.out.print("Password: ");
+		String password = obj.next();
+		System.out.println("");
+		System.out.print("Address(with pincode): ");
+		obj.nextLine();
+		String address = obj.nextLine();
+		System.out.println("");
+		userNameData = username;
+		userPasswordData = password;
+		userAddressData = address;
+		System.out.println("-->Check Your Details are Correct<--");
+		System.out.println("");
+		System.out.println("------------------------------------");
+		System.out.println("\tYour UserName: " + userNameData);
+		System.out.println("\tYour Password: " + "*********");
+		System.out.println("\tYour Address: " + userAddressData);
+		System.out.println("------------------------------------");
+		System.out.println("");
+		System.out.print("1.Yes");
+		System.out.println("\t\t2.No");
+		System.out.println("");
+		System.out.print("Confirm it: ");
+		int verify = obj.nextInt();
+		System.out.println("");
+		if (verify == 1) {
+			System.out.println("***Logged In Successfully***");
+			System.out.println("");
+			obj2.header();
+		} else {
+			System.out.println("-->ReEnter Your Login ID<--");
+			System.out.println("");
+			logIn();
+		}
+		obj.close();
+	}
+
+	public void foodItems() {
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("\t\tFood Items Detail\t");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Vegetarian Cusines");
+
+		System.out.println("\t 2.Non-Vegetarian Cusines");
+		System.out.println("");
+		System.out.print("Enter Your Food Type : ");
+		int foodTy = obj.nextInt();
+		System.out.println("");
+		switch (foodTy) {
+
+		case 1:
+			obj1.foodTypes();
+			obj1.vegVarities();
+			break;
+
+		case 2:
+			obj1.foodTypes();
+			obj1.nonVegVarities();
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("\t---->Such Food Type is" + " Not Available in our Shop!!!<----");
+			System.out.println("");
+			System.out.println("\t---->Choose Available Food Type<----");
+			System.out.println("");
+			foodItems();
+		}
+		obj.close();
+	}
+
+	public void logOut() {
+		System.out.println("");
+		System.out.println("\t" + "Visit Again Dear Customer" + "\t");
+	}
+	
+	public static void feedBack() {
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("\t" + "***" + "Username: " + userNameData + "***");
+		System.out.println("\t" + "***" + "Address : " + userAddressData + "***");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.println("Enter Your Feedback:-");
+		System.out.print("\t");
+		String feed = obj.nextLine();
+		System.out.println("");
+		System.out.println("***Your Feedback Has Been Accepted***");
+		obj.close();
+	}
+}
+
+//FoodVarieties
+
+
+ class FoodVarities extends OrderFood{
+
+	public void vegriceCusine() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Veg Briyani");
+		System.out.println("\t\t2.Fried Rice");
+		System.out.println("");
+		System.out.print("3.Fried Noodles");
+		System.out.println("\t\t4.Egg Rice");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			String name = "Veg Briyani";
+			System.out.println("================================================");
+			System.out.println("-->" + name + "<--");
+			int price = 70;
+			System.out.println("Cost is: " + "Rs." + price);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+			break;
+
+		case 2:
+			String name1 = "Fried Rice";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 65;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 3:
+			String name2 = "Fried Noodles";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 75;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 4:
+			String name3 = "Egg Rice";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 60;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+		}
+		obj.close();
+	}
+
+	public void vegGravyCusine() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Sambaar Gravy");
+		System.out.println("\t2.Mushroom Gravy");
+		System.out.println("");
+		System.out.print("3.LadiesFinger Gravy");
+		System.out.println("\t4.Spicy Gravy");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+		case 1:
+			String name = "Sambaar Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name + "<--");
+			int price = 55;
+			System.out.println("Cost is: " + "Rs." + price);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+			break;
+
+		case 2:
+			String name1 = "Mushroom Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 55;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 3:
+			String name2 = "LadiesFinger Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 55;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 4:
+			String name3 = "Spicy Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 55;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+
+		}
+		obj.close();
+	}
+
+	public void vegSoupCusine() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Vegetable Soup");
+		System.out.println("\t2.Mushroom Soup");
+		System.out.println("");
+		System.out.print("3.GreenLeaves Soup");
+		System.out.println("\t4.Broths Soup");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			String name = "Vegetable Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name + "<--");
+			int price = 40;
+			System.out.println("Cost is: " + "Rs." + price);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+			break;
+
+		case 2:
+			String name1 = "Mushroom Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 45;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 3:
+			String name2 = "GreenLeaves Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 50;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 4:
+			String name3 = "Broths Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 55;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+
+		}
+		obj.close();
+	}
+
+	public void vegMeals() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Full Meals");
+		System.out.println("\t\t2.Half Meals");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			String name2 = "Full Meals";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 150;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 2:
+			String name3 = "Half Meals";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 90;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+
+		}
+		obj.close();
+	}
+
+	public void nonVegRiceCusine() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Briyani");
+		System.out.println("\t\t2.Chicken Rice");
+		System.out.println("");
+		System.out.print("3.Chicken Noodles");
+		System.out.println("\t4.Prawn Fried Rice");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			obj2.biriyaniType();
+			break;
+
+		case 2:
+			String name1 = "Chicken Rice";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 100;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 3:
+			String name2 = "Chicken Noodles";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 110;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 4:
+			String name3 = "Prawn Fried Rice";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 130;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();		}
+		obj.close();
+	}
+
+	public void nonVegGravyCusine() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Chicken Gravy");
+		System.out.println("\t2.Mutton Gravy");
+		System.out.println("");
+		System.out.print("3.Pepper Chicken Gravy");
+		System.out.println("\t4.Egg Gravy");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			String name = "Chicken Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name + "<--");
+			int price = 60;
+			System.out.println("Cost is: " + "Rs." + price);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+			break;
+
+		case 2:
+			String name1 = "Mutton Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 60;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 3:
+			String name2 = "Pepper Chicken Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 60;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 4:
+			String name3 = "Egg Gravy";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 60;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+		}
+		obj.close();
+	}
+
+	public void nonVegSoupCusine() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Mutton Soup");
+		System.out.println("\t2.Crab Meat Soup");
+		System.out.println("");
+		System.out.print("3.Sweet Corn Chicken Soup");
+		System.out.println("4.Aatukkal Soup");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			String name = "Mutton Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name + "<--");
+			int price = 50;
+			System.out.println("Cost is: " + "Rs." + price);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+			break;
+
+		case 2:
+			String name1 = "Crab Meat Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 65;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 3:
+			String name2 = "Sweet Corn Chicken Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 60;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 4:
+			String name3 = "Aatukkal Soup";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 60;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+		}
+		obj.close();
+	}
+
+	public void nonVegMeals() {
+		FoodOrderVeg obj2 = new FoodOrderVeg();
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Full Meals");
+		System.out.println("\t2.Half Meals");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Food Varities: ");
+		int foodvarities = obj.nextInt();
+
+		switch (foodvarities) {
+
+		case 1:
+			String name2 = "Full Meals";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 150;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		case 2:
+			String name3 = "Half Meals";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 90;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			obj2.Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+
+		}
+		obj.close();
+	}
+}
+
+//FoodOredereVeg
+
+
+ class FoodOrderVeg   {
+	OrderFood obj1 = new OrderFood();
+	FoodVarities obj2 = new FoodVarities();
+	void Order() {
+		Scanner obj = new Scanner(System.in);
+
+		int confirm = obj.nextInt();
+		if (confirm == 1) {
+			System.out.println("");
+			System.out.println("Your Order has been Placed!!!");
+			obj1.header();
+		} else if (confirm == 2) {
+			System.out.println("");
+			obj1.header();
+		} else {
+			System.out.println("");
+			System.out.println("****Confirm Type Does not Match****");
+			System.out.println("");
+			obj2.vegriceCusine();
+		}
+		obj.close();
+	}
+	
+	void biriyaniType() {
+		
+		Scanner obj = new Scanner(System.in);
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("1.Chicken Briyani");
+		System.out.println("\t2.Ambur biryani");
+		System.out.println("");
+		System.out.print("3.Mutton Biriyani");
+		System.out.println("\t4.Fish Biriyani");
+		System.out.println("");
+		System.out.print("5.Egg Biryani");
+		System.out.println("\t6.Kuska");
+		System.out.println("");
+		System.out.println("================================================");
+		System.out.println("");
+		System.out.print("Enter Your Briyani Type: ");
+		int biriyani = obj.nextInt();
+		
+		switch (biriyani) {
+
+		case 1:
+			String name = "Chicken Biriyani";
+			System.out.println("================================================");
+			System.out.println("-->" + name + "<--");
+			int price = 100;
+			System.out.println("Cost is: " + "Rs." + price);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			Order();
+			break;
+
+		case 2:
+			String name1 = "Ambur biryani";
+			System.out.println("================================================");
+			System.out.println("-->" + name1 + "<--");
+			int price1 = 125;
+			System.out.println("Cost is: " + "Rs." + price1);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			Order();
+
+			break;
+
+		case 3:
+			String name2 = "Mutton Biriyani";
+			System.out.println("================================================");
+			System.out.println("-->" + name2 + "<--");
+			int price2 = 130;
+			System.out.println("Cost is: " + "Rs." + price2);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			Order();
+
+			break;
+
+		case 4:
+			String name3 = "Fish Biriyani";
+			System.out.println("================================================");
+			System.out.println("-->" + name3 + "<--");
+			int price3 = 55;
+			System.out.println("Cost is: " + "Rs." + price3);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			Order();
+
+			break;
+			
+		case 5:
+			String name4 = "Egg Biriyani";
+			System.out.println("================================================");
+			System.out.println("-->" + name4 + "<--");
+			int price4 = 130;
+			System.out.println("Cost is: " + "Rs." + price4);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			Order();
+
+			break;
+			
+		case 6:
+			String name5 = "Kuska";
+			System.out.println("================================================");
+			System.out.println("-->" + name5 + "<--");
+			int price5 = 90;
+			System.out.println("Cost is: " + "Rs." + price5);
+			System.out.println("To Place Order -> Enter 1 ");
+			System.out.println("To Leave -> Enter 2");
+			System.out.println("================================================");
+			System.out.println("");
+			System.out.print("Enter the Confirmation Type: ");
+			Order();
+
+			break;
+
+		default:
+			System.out.println("");
+			System.out.println("Your Choice Cusine Type Not Available");
+			System.out.println("");
+			System.out.println("\tChoose Other Cusine Type!!!");
+			FoodType obj3 = new FoodType();
+			obj3.foodTypes();
+
+		}
+		obj.close();
+
+	}
+
+}
+
+//foodTypes
+class FoodType extends OrderFood{
+	FoodVarities obj1 = new FoodVarities();
+
+	void foodTypes() {
+		System.out.println("================================================");
+		System.out.print("1.Fried Cusines");
+		System.out.println("\t\t2.Gravy Cusine");
+		System.out.println("");
+		System.out.print("3.Soup Cusine");
+		System.out.println("\t\t4.Meals");
+		System.out.println("================================================");
+
+	}
+
+	void vegVarities() {
+		Scanner obj = new Scanner(System.in);
+		System.out.println("");
+		System.out.print("Enter Your Cusine Type: ");
+		int cusineData = obj.nextInt();
+		System.out.println("");
+
+		switch (cusineData) {
+
+		case 1:
+			System.out.println("================================================");
+			System.out.println("\t\tFried Cusine");
+			System.out.println("================================================");
+			obj1.vegriceCusine();
+			break;
+
+		case 2:
+			System.out.println("================================================");
+			System.out.println("\t\tGravy Cusine");
+			System.out.println("================================================");
+			obj1.vegGravyCusine();
+			break;
+
+		case 3:
+			System.out.println("================================================");
+			System.out.println("\t\tSoup Cusine");
+			System.out.println("================================================");
+			obj1.vegSoupCusine();
+			break;
+
+		case 4:
+			System.out.println("================================================");
+			System.out.println("\t\tMeals");
+			System.out.println("================================================");
+			obj1.vegMeals();
+			break;
+		}
+		obj.close();
+	}
+
+	void nonVegVarities() {
+		Scanner obj = new Scanner(System.in);
+		System.out.print("Enter Your Cusine Type: ");
+		int cusineData = obj.nextInt();
+
+		switch (cusineData) {
+
+		case 1:
+			System.out.println("================================================");
+			System.out.println("\t\tFried Cusine");
+			System.out.println("================================================");
+			obj1.nonVegRiceCusine();
+			break;
+
+		case 2:
+			System.out.println("================================================");
+			System.out.println("\t\tGravy Cusine");
+			System.out.println("================================================");
+			obj1.nonVegGravyCusine();
+			break;
+
+		case 3:
+			System.out.println("================================================");
+			System.out.println("\t\tSoup Cusine");
+			System.out.println("================================================");
+			obj1.nonVegSoupCusine();
+			break;
+
+		case 4:
+			System.out.println("================================================");
+			System.out.println("\t\t\tMeals");
+			System.out.println("================================================");
+			obj1.nonVegMeals();
+			break;
+		}
+		obj.close();
+
+	}
+}
+
